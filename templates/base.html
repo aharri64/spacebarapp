@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Space Bar</title>
+
+        <!-- Latest compiled and minified CSS -->
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous"
+        />
+
+        <!-- Optional theme -->
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+            integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+            crossorigin="anonymous"
+        />
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"
+        ></script>
+
+        <link
+            href="https://fonts.googleapis.com/css?family=Montserrat"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="{% static 'spacebarapp/css/master.css'%}" />
+        {% comment %} <link rel="stylesheet" href="{% static 'spacebarapp/css/main.css'%}" /> {% endcomment %}
+    </head>
+    <body>
+    {% comment %} <div class="stars"> {% endcomment %}
+    {% comment %} <div class="stars twinkling clouds"> {% endcomment %}
+
+        <nav class="navbar mynav" role="navigation" id="navbar">
+            <div class="container">
+                <a href="{% url 'home' %}" class="navbar-brand mynav">Space Bar</a>
+
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'posts:create' %}">Post</a></li>
+                        <li><a href="{% url 'groups:all' %}">Groups</a></li>
+                        <li><a href="{% url 'groups:create' %}">Create Group</a></li>
+                        <li><a href="{% url 'accounts:logout' %}">Log Out</a></li>
+                    {% else %}
+                        <li><a href="{% url 'groups:all' %}">Groups</a></li>
+                        <li><a href="{% url 'accounts:login' %}">Log In</a></li>
+                        <li><a href="{% url 'accounts:signup' %}">Sign Up</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container mycontent">
+            {% block content %}
+            {% endblock %}
+        </div>
+    {% comment %} </div> {% endcomment %}
+        <canvas id="canvas"></canvas>
+        {% comment %} <canvas id="main_canvas"></canvas> {% endcomment %}
+    </body>
+    <script type="text/javascript" src="{% static 'spacebarapp/js/master.js' %}"></script>
+</html>
