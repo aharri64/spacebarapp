@@ -1,4 +1,5 @@
 // SOURCE: http://codepen.io/Thibka/pen/mWGxNj
+// ! Figure out another js code with stars
 var canvas = document.getElementById("canvas"),
     context = canvas.getContext("2d"),
     requestAnimationFrame =
